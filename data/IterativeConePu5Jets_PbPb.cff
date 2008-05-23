@@ -2,11 +2,9 @@
    #
    # Jet reconstruction
    #
-   # You must have added the new 1_5_2 Jet Corrections with the following to your CMSSW:
-   # cvs co -r jet_corrections_16X JetMETCorrections/MCJet/data
-   #
    # Details about the 1_5_2 MCJet corrections and closure tests can be found in
    # http://indico.cern.ch/getFile.py/access?contribId=4&amp;resId=1&amp;materialId=slides&amp;confId=22133
+   # MCJetCorJetIconePu5 is tuned for p+p collisions 
 ##################################################################################
 
  es_module = HcalTopologyIdealEP {}
