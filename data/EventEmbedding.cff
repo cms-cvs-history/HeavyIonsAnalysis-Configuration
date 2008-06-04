@@ -37,3 +37,16 @@ block eventEmbeddingMixParameters = {
       int32 bunchspace = 125
       untracked bool checktof = false
 }
+
+block genEventEmbeddingMixParameters = {
+
+using eventEmbeddingMixParameters
+string LabelPlayback = ""
+PSet mixObjects = {
+PSet mySet = {
+string type = "HepMCProduct"
+VInputTag input = { "source" , "secsource" }
+
+}
+}
+}
