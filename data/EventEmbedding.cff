@@ -20,7 +20,7 @@
 #   	}
 #	
 	
-
+include "SimGeneral/MixingModule/data/mixObjects.cfi"
 
 block eventEmbeddingSourceParameters = {
          string type = "fixed"
@@ -36,17 +36,29 @@ block eventEmbeddingMixParameters = {
       string Label = ""
       int32 bunchspace = 125
       untracked bool checktof = false
+      string LabelPlayback = ""
+}
+
+
+block simEventEmbeddingMixParameters = {
+
+  using eventEmbeddingMixParameters
+  PSet mixObjects ={
+	PSet mixTracks = {using mixSimTracks}
+	PSet mixVertices =  {using mixSimVertices}
+	PSet mixSH =  {using mixSimHits}
+	PSet mixCH =  {using mixCaloHits}
+	PSet mixHepMC = {using mixHepMCProducts}
+      }
 }
 
 block genEventEmbeddingMixParameters = {
 
-using eventEmbeddingMixParameters
-string LabelPlayback = ""
-PSet mixObjects = {
-PSet mySet = {
-string type = "HepMCProduct"
-VInputTag input = { "source" , "secsource" }
-
-}
-}
+   using eventEmbeddingMixParameters
+   PSet mixObjects = {
+   PSet mySet = {
+    string type = "HepMCProduct"
+    VInputTag input = { "source" , "secsource" }
+    }
+   }
 }
