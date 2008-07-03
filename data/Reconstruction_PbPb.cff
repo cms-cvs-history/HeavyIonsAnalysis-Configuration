@@ -1,0 +1,57 @@
+
+##################################################################################
+   #
+   # HI Tracking (High pt by Vasu, Low pt by Ferenc) both with 
+   # same sequence name : hiTrackingWithOffLineBeamSpot
+   #
+##################################################################################
+
+#  include "HeavyIonsAnalysis/Configuration/data/LowPtTracking_PbPb.cff"
+
+   include "HeavyIonsAnalysis/Configuration/data/HighPtTracking_PbPb.cff"
+
+##################################################################################
+   #
+   # ECAL and HCAL reconstruction
+   #
+##################################################################################
+
+   include "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
+   include "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+   include "RecoLocalCalo/EcalRecProducers/data/ecalPreshowerRecHit.cfi"
+   sequence ecalloc = { ecalWeightUncalibRecHit,
+                        ecalRecHit,
+                        ecalPreshowerRecHit
+   }
+
+   # ECAL clustering
+   include "RecoEcal/EgammaClusterProducers/data/islandClusteringSequence.cff"
+   include "RecoEcal/EgammaClusterProducers/data/hybridClusteringSequence.cff"
+   include "RecoEcal/EgammaClusterProducers/data/preshowerClusteringSequence.cff"
+   sequence ecalcst = { islandClusteringSequence,
+                        hybridClusteringSequence,
+                        preshowerClusteringSequence
+   }
+
+   # HCAL reconstruction
+   include "RecoLocalCalo/Configuration/data/hcalLocalReco.cff"
+
+   sequence caloReco = {ecalloc, ecalcst, hcalLocalRecoSequence } 
+
+
+##################################################################################
+   #
+   # Jet reconstruction
+   #
+   # Details about the 1_5_2 MCJet corrections and closure tests can be found in
+   # http://indico.cern.ch/getFile.py/access?contribId=4&amp;resId=1&amp;materialId=slides&amp;confId=22133
+##################################################################################
+
+   include "HeavyIonsAnalysis/Configuration/data/IterativeConePu5Jets_PbPb.cff"
+
+##################################################################################
+
+   sequence reconstruct_PbPb = { hiTrackingWithOfflineBeamSpot, caloReco, runjets }
+
+
+
