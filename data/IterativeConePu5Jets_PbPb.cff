@@ -40,6 +40,3 @@
 
    sequence runjets = { towerMaker, iterativeConePu5CaloJets, 
                         genJetParticles, iterativeCone5GenJets, MCJetCorJetIconePu5 }
-                        
-   sequence runmorejets = { towerMaker, iterativeConePu5CaloJets, iterativeCone5CaloJets, 
-                        genJetParticles, iterativeCone5GenJets, MCJetCorJetIconePu5 }
