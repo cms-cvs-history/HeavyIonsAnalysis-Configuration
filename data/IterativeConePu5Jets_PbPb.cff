@@ -16,16 +16,7 @@
    include "RecoJets/Configuration/data/GenJetParticles.cff"
    include "RecoJets/JetProducers/data/CaloTowerSchemeB.cfi"
 
-   module caloTowers = CaloTowerCandidateCreator
-   {
-      untracked int32 verbose = 0
-      InputTag src = towerMaker
-      double et = 0
-      double e = 0
-      double pt = 0
-      double minimumEt = 0
-      double minimumE = 0
-   }
+   include "RecoJets/Configuration/data/RecoJets.cff"
 
    include "RecoJets/JetProducers/data/CaloJetPileupSubtractionParameters.cfi"
    include "RecoJets/JetProducers/data/IconeJetParameters.cfi"
@@ -47,5 +38,8 @@
    }
    replace HepPDTESSource.pdtFileName = "HeavyIonsAnalysis/Configuration/data/HIPythia6Table.tbl"
 
-   sequence runjets = { towerMaker, caloTowers, iterativeConePu5CaloJets,
+   sequence runjets = { towerMaker, iterativeConePu5CaloJets, 
+                        genJetParticles, iterativeCone5GenJets, MCJetCorJetIconePu5 }
+                        
+   sequence runmorejets = { towerMaker, iterativeConePu5CaloJets, iterativeCone5CaloJets, 
                         genJetParticles, iterativeCone5GenJets, MCJetCorJetIconePu5 }
